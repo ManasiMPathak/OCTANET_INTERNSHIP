@@ -1,1 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> To Do List</title>
+    <style>
+*{
+    box-sizing: border-box;
+}
+body{
+    background-image: url("https://pbs.twimg.com/ext_tw_video_thumb/1471119120611655683/pu/img/OKDK-6qIfQNOyLro.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 560px;
 
+}
+#div1{
+    font-size: 5vh;
+    color: rgb(57, 34, 5);
+    margin: 36px;
+}
+
+.addbtn{
+    color: rgb(57, 34, 5);
+    text-align: center;
+    font-size: 16px;
+    padding: 10PX;
+    margin-top: 2px;
+    box-shadow: brown;
+    width: 15%;
+    float: left;
+    cursor: pointer;
+    transition: 0.3s;
+    background: transparent;
+    border-radius: 0;
+    background: transparent;
+    border-color: #DAA06D;
+    box-shadow: 10px 10px 5px  #DAA06D;
+}
+.addbtn:hover{
+    background-color: transparent;
+}
+/*#myinput{
+    width: 500px;
+    height: 30px;
+    padding: 11px;
+    margin: 0px;
+    background: transparent;
+    border-color: #DAA06D;
+    box-shadow: 10px 10px 5px  #DAA06D;
+    url("https://wallpapercave.com/wp/wp9211946.png")
+}*/
+#ul {
+   margin: 0;
+   padding: 0;
+   list-style-type: none;
+}
+ul li{
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    font-size: 18px;
+    transition: 0.2s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+     user-select: none;
+     list-style-type: none;
+     width: 25%;
+    
+}
+ul li:nth-child(){
+background: #DAA06D;
+}
+ul li:hover{
+    background: #6c390d;
+}
+ul li:checked{
+    background: #87613f;
+    color: blanchedalmond;
+    text-decoration: line-through;
+}
+ul li.checked::before{
+    content: '';
+    position: absolute;
+    border-color: rgb(122, 6, 6);
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+.close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+}
+.close:hover{
+    background-color: rgb(84, 34, 10);
+    color: rgb(85, 29, 7);
+}
+.header{
+    background-color: transparent;
+    padding: 30px 40px;
+    color: rgb(178, 32, 32);
+    text-align: left;
+}
+.header::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+input{
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    width: 50%;
+    padding: 10px;
+    float: left;
+    font-size: 16px;
+    background: transparent;
+    border-color: #DAA06D;
+    box-shadow: 10px 10px 5px  #DAA06D;
+    
+}
+
+    </style>
+</head>
+<body>
+<div id="div1" class="header">
+    <h1> TO DO LIST </h1>
+    <input type="text " id="myinput" placeholder="Add Your Task">
+    
+    <span onclick="newelement()" class="addbtn" >  Add Task  </span>
+</div>
+<ul id="myul">
+    <li> Work on HomePage </li>
+    <li class="checked"> Work on Improving Adoption Form </li>
+    <li> Check Adoption Form Responses </li>
+    <li> Snack Time  </li>
+    <li> Work on JavaScript </li>
+</ul>
+<script>
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+
+function newelement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myinput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myul").appendChild(li);
+  }
+  document.getElementById("myinput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
